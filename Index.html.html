@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sohil Sheikh — AI + Software Engineer</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+  :root{--bg:#080c14;--surface:#0d1220;--surface2:#111827;--border:#1e2d45;--accent:#38bdf8;--accent2:#818cf8;--accent3:#34d399;--text:#e2e8f0;--muted:#64748b;--card:#0f172a}
+  html{scroll-behavior:smooth}
+  body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,12,20,0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem;height:56px;display:flex;align-items:center;justify-content:space-between}
+  .nav-logo{font-family:'JetBrains Mono',monospace;font-size:.9rem;color:var(--accent);font-weight:500}
+  .nav-links{display:flex;gap:2rem}
+  .nav-links a{color:var(--muted);text-decoration:none;font-size:.85rem;font-weight:500;transition:color .2s}
+  .nav-links a:hover{color:var(--accent)}
+  .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:80px 2rem 2rem}
+  .hero-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse 80% 50% at 20% 40%,rgba(56,189,248,.08) 0%,transparent 60%),radial-gradient(ellipse 60% 40% at 80% 60%,rgba(129,140,248,.07) 0%,transparent 60%)}
+  .grid-overlay{position:absolute;inset:0;z-index:0;background-image:linear-gradient(rgba(56,189,248,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(56,189,248,.03) 1px,transparent 1px);background-size:40px 40px}
+  .hero-content{position:relative;z-index:1;text-align:center;max-width:800px}
+  .hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(56,189,248,.08);border:1px solid rgba(56,189,248,.2);border-radius:100px;padding:.35rem 1rem;font-size:.78rem;color:var(--accent);font-family:'JetBrains Mono',monospace;margin-bottom:1.5rem;animation:fadeUp .6s ease both}
+  .dot{width:6px;height:6px;background:var(--accent3);border-radius:50%;animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+  h1{font-size:clamp(2.5rem,6vw,4.5rem);font-weight:700;line-height:1.05;letter-spacing:-.03em;animation:fadeUp .6s .1s ease both}
+  .name-highlight{background:linear-gradient(135deg,var(--accent) 0%,var(--accent2) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .hero-sub{font-size:1.1rem;color:var(--muted);margin:1rem auto 2rem;max-width:560px;animation:fadeUp .6s .2s ease both}
+  .hero-tags{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin-bottom:2rem;animation:fadeUp .6s .3s ease both}
+  .tag{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:.3rem .75rem;font-size:.78rem;color:var(--text);font-family:'JetBrains Mono',monospace}
+  .hero-cta{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;animation:fadeUp .6s .4s ease both}
+  .btn{padding:.65rem 1.5rem;border-radius:8px;font-size:.9rem;font-weight:600;cursor:pointer;text-decoration:none;transition:all .2s;font-family:'Space Grotesk',sans-serif;border:none}
+  .btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#000}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(56,189,248,.3)}
+  .btn-ghost{background:transparent;border:1px solid var(--border);color:var(--text)}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+  .stats-bar{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:1.5rem 2rem;display:flex;justify-content:center;gap:3rem;flex-wrap:wrap}
+  .stat{text-align:center}
+  .stat-num{font-size:1.6rem;font-weight:700;color:var(--accent);font-family:'JetBrains Mono',monospace}
+  .stat-label{font-size:.75rem;color:var(--muted);margin-top:.1rem}
+  section{padding:5rem 2rem;max-width:1100px;margin:0 auto}
+  .section-eyebrow{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--accent);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem}
+  .section-title{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;letter-spacing:-.02em;margin-bottom:.5rem}
+  .section-sub{color:var(--muted);font-size:.95rem;margin-bottom:3rem;max-width:500px}
+  .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem}
+  .skill-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;transition:all .25s}
+  .skill-card:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 8px 32px rgba(56,189,248,.08)}
+  .skill-card-header{display:flex;align-items:center;gap:.75rem;margin-bottom:1rem}
+  .skill-icon{font-size:1.4rem}
+  .skill-card-title{font-weight:600;font-size:.95rem}
+  .skill-card-sub{font-size:.75rem;color:var(--muted);margin-top:.1rem}
+  .skill-pills{display:flex;flex-wrap:wrap;gap:.4rem}
+  .pill{background:rgba(56,189,248,.07);border:1px solid rgba(56,189,248,.15);border-radius:4px;padding:.2rem .55rem;font-size:.72rem;color:var(--accent);font-family:'JetBrains Mono',monospace}
+  .pill.purple{background:rgba(129,140,248,.07);border-color:rgba(129,140,248,.15);color:var(--accent2)}
+  .pill.green{background:rgba(52,211,153,.07);border-color:rgba(52,211,153,.15);color:var(--accent3)}
+  .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.5rem}
+  .project-card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:all .25s}
+  .project-card:hover{border-color:var(--accent2);transform:translateY(-4px);box-shadow:0 12px 40px rgba(129,140,248,.1)}
+  .project-header{padding:1.5rem 1.5rem 0;display:flex;justify-content:space-between;align-items:flex-start}
+  .project-type{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--accent3);letter-spacing:.08em;text-transform:uppercase;background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.15);border-radius:4px;padding:.15rem .5rem}
+  .project-links{display:flex;gap:.5rem}
+  .project-link{width:30px;height:30px;border-radius:6px;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.8rem;text-decoration:none;transition:all .2s;color:var(--muted)}
+  .project-link:hover{background:var(--accent);color:#000;border-color:var(--accent)}
+  .project-body{padding:1rem 1.5rem 1.5rem}
+  .project-title{font-size:1.05rem;font-weight:700;margin-bottom:.4rem}
+  .project-desc{font-size:.85rem;color:var(--muted);margin-bottom:1rem;line-height:1.5}
+  .project-stack{display:flex;flex-wrap:wrap;gap:.35rem}
+  .stack-tag{background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:.15rem .5rem;font-size:.7rem;color:var(--muted);font-family:'JetBrains Mono',monospace}
+  .ai-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+  .ai-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.25rem;position:relative;overflow:hidden;transition:all .25s}
+  .ai-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));opacity:0;transition:opacity .25s}
+  .ai-card:hover{border-color:rgba(56,189,248,.3)}
+  .ai-card:hover::before{opacity:1}
+  .ai-tool-icon{font-size:1.8rem;margin-bottom:.75rem}
+  .ai-tool-name{font-weight:600;font-size:.9rem;margin-bottom:.3rem}
+  .ai-tool-use{font-size:.78rem;color:var(--muted);line-height:1.4}
+  .exp-items{display:flex;flex-direction:column;gap:1rem}
+  .exp-item{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.25rem 1.5rem;display:flex;align-items:center;gap:1.25rem}
+  .exp-icon{font-size:1.4rem;flex-shrink:0}
+  .exp-label{font-weight:600;font-size:.9rem}
+  .exp-detail{font-size:.8rem;color:var(--muted);margin-top:.1rem}
+  .cgpa-badge{display:inline-flex;align-items:center;gap:.4rem;background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.2);border-radius:6px;padding:.3rem .75rem;font-size:.78rem;color:var(--accent3);font-family:'JetBrains Mono',monospace;margin-top:1rem}
+  .contact-wrap{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:3rem;text-align:center;background-image:radial-gradient(ellipse 60% 60% at 50% 0%,rgba(56,189,248,.06) 0%,transparent 70%)}
+  .contact-title{font-size:1.8rem;font-weight:700;margin-bottom:.5rem}
+  .contact-sub{color:var(--muted);margin-bottom:2rem}
+  .contact-links{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+  .contact-link{display:flex;align-items:center;gap:.5rem;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:.6rem 1.2rem;text-decoration:none;color:var(--text);font-size:.85rem;font-weight:500;transition:all .2s}
+  .contact-link:hover{border-color:var(--accent);color:var(--accent)}
+  footer{text-align:center;padding:2rem;border-top:1px solid var(--border);font-size:.78rem;color:var(--muted);font-family:'JetBrains Mono',monospace}
+  .divider{border:none;border-top:1px solid var(--border);margin:0}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-logo">sohil.dev</div>
+  <div class="nav-links">
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#ai-tools">AI Tools</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="grid-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge"><div class="dot"></div>Available for opportunities · Immediate joiner</div>
+    <h1><span class="name-highlight">Sohil Sheikh</span><br>AI-Powered Software Engineer</h1>
+    <p class="hero-sub">Building full-stack applications, ML pipelines, and AI-integrated products — from 320px mobile UIs to scalable backend systems.</p>
+    <div class="hero-tags">
+      <span class="tag">React.js</span><span class="tag">Node.js</span><span class="tag">Python</span><span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">TensorFlow</span><span class="tag">OpenAI API</span><span class="tag">PostgreSQL</span><span class="tag">Docker</span><span class="tag">AWS</span>
+    </div>
+    <div class="hero-cta">
+      <a href="https://github.com/Sohil7021" target="_blank" class="btn btn-primary">View GitHub →</a>
+      <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+    </div>
+  </div>
+</div>
+<div class="stats-bar">
+  <div class="stat"><div class="stat-num">8.32</div><div class="stat-label">CGPA · University of Mumbai</div></div>
+  <div class="stat"><div class="stat-num">200+</div><div class="stat-label">LeetCode Problems Solved</div></div>
+  <div class="stat"><div class="stat-num">5+</div><div class="stat-label">Full Projects Shipped</div></div>
+  <div class="stat"><div class="stat-num">91%</div><div class="stat-label">ML Model Accuracy</div></div>
+  <div class="stat"><div class="stat-num">99.5%</div><div class="stat-label">System Uptime Achieved</div></div>
+</div>
+<hr class="divider">
+<section id="skills">
+  <div class="section-eyebrow">// technical skills</div>
+  <div class="section-title">What I Build With</div>
+  <p class="section-sub">Full-stack and AI/ML capabilities, from pixel-perfect UIs to deployed backend systems.</p>
+  <div class="skills-grid">
+    <div class="skill-card"><div class="skill-card-header"><div class="skill-icon">⚡</div><div><div class="skill-card-title">Frontend</div><div class="skill-card-sub">UI / UX Development</div></div></div><div class="skill-pills"><span class="pill">React.js</span><span class="pill">JavaScript</span><span class="pill">TypeScript</span><span class="pill">Tailwind CSS</span><span class="pill">Three.js</span><span class="pill">Framer Motion</span><span class="pill">HTML5</span><span class="pill">CSS3</span></div></div>
+    <div class="skill-card"><div class="skill-card-header"><div class="skill-icon">🔧</div><div><div class="skill-card-title">Backend</div><div class="skill-card-sub">APIs & Server-Side Logic</div></div></div><div class="skill-pills"><span class="pill purple">Node.js</span><span class="pill purple">Express.js</span><span class="pill purple">Java</span><span class="pill purple">Spring Boot</span><span class="pill purple">Python</span><span class="pill purple">REST APIs</span><span class="pill purple">Microservices</span></div></div>
+    <div class="skill-card"><div class="skill-card-header"><div class="skill-icon">🧠</div><div><div class="skill-card-title">AI / Machine Learning</div><div class="skill-card-sub">Models, Pipelines & AI Integration</div></div></div><div class="skill-pills"><span class="pill green">TensorFlow</span><span class="pill green">Keras</span><span class="pill green">LSTM / NLP</span><span class="pill green">OpenAI API</span><span class="pill green">LLM Integration</span><span class="pill green">Prompt Engineering</span><span class="pill green">Generative AI</span></div></div>
+    <div class="skill-card"><div class="skill-card-header"><div class="skill-icon">🗄️</div><div><div class="skill-card-title">Databases</div><div class="skill-card-sub">SQL & NoSQL</div></div></div><div class="skill-pills"><span class="pill">PostgreSQL</span><span class="pill">MongoDB</span><span class="pill">MySQL</span><span class="pill">Schema Design</span><span class="pill">Query Optimisation</span><span class="pill">Indexing</span></div></div>
+    <div class="skill-card"><div class="skill-card-header"><div class="skill-icon">☁️</div><div><div class="skill-card-title">DevOps & Cloud</div><div class="skill-card-sub">CI/CD, Containers & Cloud</div></div></div><div class="skill-pills"><span class="pill purple">AWS (EC2, S3)</span><span class="pill purple">Docker</span><span class="pill purple">Jenkins CI/CD</span><span class="pill purple">Git / GitHub</span><span class="pill purple">Linux</span><span class="pill purple">Postman</span></div></div>
+    <div class="skill-card"><div class="skill-card-header"><div class="skill-icon">🧪</div><div><div class="skill-card-title">Testing & Quality</div><div class="skill-card-sub">Unit, Integration & QA</div></div></div><div class="skill-pills"><span class="pill green">JUnit</span><span class="pill green">Python unittest</span><span class="pill green">95%+ Coverage</span><span class="pill green">Integration Testing</span><span class="pill green">Test Plan Design</span></div></div>
+  </div>
+</section>
+<hr class="divider">
+<section id="projects">
+  <div class="section-eyebrow">// shipped projects</div>
+  <div class="section-title">Things I've Actually Built</div>
+  <p class="section-sub">Real applications — not coursework. Click GitHub to see the code.</p>
+  <div class="projects-grid">
+    <div class="project-card"><div class="project-header"><span class="project-type">Full-Stack · AI · MERN</span><div class="project-links"><a href="https://github.com/Sohil7021/MERN-STACK-AI-Image-Generation-App" target="_blank" class="project-link">⌥</a></div></div><div class="project-body"><div class="project-title">AI Image Generation App</div><div class="project-desc">Full-stack MERN application where users generate AI images from text prompts via OpenAI DALL-E, save them to a gallery, and share them. Deployed live on Netlify.</div><div class="project-stack"><span class="stack-tag">React</span><span class="stack-tag">Node.js</span><span class="stack-tag">Express</span><span class="stack-tag">MongoDB</span><span class="stack-tag">OpenAI API</span><span class="stack-tag">Netlify</span></div></div></div>
+    <div class="project-card"><div class="project-header"><span class="project-type">3D · AI · Frontend</span><div class="project-links"><a href="https://github.com/Sohil7021/3D-Swag-Customization-App" target="_blank" class="project-link">⌥</a></div></div><div class="project-body"><div class="project-title">3D Swag Customization App</div><div class="project-desc">Interactive 3D product customizer — upload logos, change colours, apply AI-generated textures, and download results. Built with Three.js and React Three Fiber.</div><div class="project-stack"><span class="stack-tag">React</span><span class="stack-tag">Three.js</span><span class="stack-tag">Tailwind CSS</span><span class="stack-tag">OpenAI API</span><span class="stack-tag">Framer Motion</span><span class="stack-tag">Valtio</span></div></div></div>
+    <div class="project-card"><div class="project-header"><span class="project-type">Backend · Cloud · DevOps</span><div class="project-links"><a href="https://github.com/Sohil7021" target="_blank" class="project-link">⌥</a></div></div><div class="project-body"><div class="project-title">ERP Microservices Platform</div><div class="project-desc">Production-grade distributed backend — 500+ req/min, PostgreSQL, Docker, Jenkins CI/CD, AWS deployment. 99.5% uptime.</div><div class="project-stack"><span class="stack-tag">Java</span><span class="stack-tag">Spring Boot</span><span class="stack-tag">PostgreSQL</span><span class="stack-tag">Docker</span><span class="stack-tag">Jenkins</span><span class="stack-tag">AWS</span></div></div></div>
+    <div class="project-card"><div class="project-header"><span class="project-type">ML · NLP · Python</span><div class="project-links"><a href="https://github.com/Sohil7021" target="_blank" class="project-link">⌥</a></div></div><div class="project-body"><div class="project-title">Sentiment Analysis Engine</div><div class="project-desc">End-to-end ML pipeline — LSTM + GloVe on 50K+ samples, 91% accuracy. Exposed via REST API.</div><div class="project-stack"><span class="stack-tag">Python</span><span class="stack-tag">TensorFlow</span><span class="stack-tag">Keras</span><span class="stack-tag">LSTM</span><span class="stack-tag">GloVe</span><span class="stack-tag">REST API</span></div></div></div>
+    <div class="project-card"><div class="project-header"><span class="project-type">Java · Algorithms · Testing</span><div class="project-links"><a href="https://github.com/Sohil7021" target="_blank" class="project-link">⌥</a></div></div><div class="project-body"><div class="project-title">DSA Algorithm Visualizer</div><div class="project-desc">Interactive Java app visualising 15+ algorithms with real-time complexity analysis. 95% JUnit coverage. Clean OOP architecture.</div><div class="project-stack"><span class="stack-tag">Java</span><span class="stack-tag">Swing</span><span class="stack-tag">JUnit</span><span class="stack-tag">OOP Patterns</span><span class="stack-tag">95% Coverage</span></div></div></div>
+  </div>
+</section>
+<hr class="divider">
+<section id="ai-tools">
+  <div class="section-eyebrow">// ai efficiency</div>
+  <div class="section-title">AI Tools I Use Daily</div>
+  <p class="section-sub">Using AI to build faster, debug smarter, and ship better quality code.</p>
+  <div class="ai-grid">
+    <div class="ai-card"><div class="ai-tool-icon">🤖</div><div class="ai-tool-name">Claude (Anthropic)</div><div class="ai-tool-use">Architecture decisions, code review, writing technical docs, debugging complex logic.</div></div>
+    <div class="ai-card"><div class="ai-tool-icon">💬</div><div class="ai-tool-name">ChatGPT / GPT-4</div><div class="ai-tool-use">Rapid prototyping, explaining unfamiliar APIs, generating boilerplate, exploring solution approaches.</div></div>
+    <div class="ai-card"><div class="ai-tool-icon">🎨</div><div class="ai-tool-name">OpenAI DALL-E API</div><div class="ai-tool-use">Integrated directly into shipped products — AI image & texture generation in real applications.</div></div>
+    <div class="ai-card"><div class="ai-tool-icon">⚡</div><div class="ai-tool-name">GitHub Copilot</div><div class="ai-tool-use">Accelerating repetitive coding tasks, boilerplate generation, and inline suggestions.</div></div>
+    <div class="ai-card"><div class="ai-tool-icon">🔍</div><div class="ai-tool-name">Perplexity AI</div><div class="ai-tool-use">Research and documentation lookup — faster than Stack Overflow for new libraries and error patterns.</div></div>
+    <div class="ai-card"><div class="ai-tool-icon">🧠</div><div class="ai-tool-name">TensorFlow / Keras</div><div class="ai-tool-use">Built and trained ML models including LSTM-based NLP pipeline achieving 91% accuracy.</div></div>
+    <div class="ai-card"><div class="ai-tool-icon">✍️</div><div class="ai-tool-name">Prompt Engineering</div><div class="ai-tool-use">Structured outputs, role prompting, chain-of-thought, iterative refinement techniques.</div></div>
+    <div class="ai-card"><div class="ai-tool-icon">📜</div><div class="ai-tool-name">Microsoft AI Certified</div><div class="ai-tool-use">Career Essentials in Generative AI — Microsoft & LinkedIn Learning (2025).</div></div>
+  </div>
+</section>
+<hr class="divider">
+<section id="education">
+  <div class="section-eyebrow">// background</div>
+  <div class="section-title">Education & Certifications</div>
+  <p class="section-sub">Strong academic foundation, continuously upskilling.</p>
+  <div class="exp-items">
+    <div class="exp-item"><div class="exp-icon">🎓</div><div><div class="exp-label">B.E. Computer Engineering — University of Mumbai</div><div class="exp-detail">Shivajirao S Jondhale College of Engineering · July 2020 – May 2024</div><div class="cgpa-badge">✦ CGPA 8.32 / 10</div></div></div>
+    <div class="exp-item"><div class="exp-icon">🤖</div><div><div class="exp-label">Career Essentials in Generative AI</div><div class="exp-detail">Microsoft & LinkedIn Learning · 2025</div></div></div>
+    <div class="exp-item"><div class="exp-icon">💻</div><div><div class="exp-label">Full Stack Development · Java Programming · DSA Mastery</div><div class="exp-detail">Udemy / Coursera · 2024</div></div></div>
+    <div class="exp-item"><div class="exp-icon">🏆</div><div><div class="exp-label">200+ LeetCode Problems Solved</div><div class="exp-detail">Arrays · Trees · Graphs · Dynamic Programming</div></div></div>
+  </div>
+</section>
+<hr class="divider">
+<section id="contact">
+  <div class="contact-wrap">
+    <div class="section-eyebrow" style="margin-bottom:.75rem">// let's connect</div>
+    <div class="contact-title">Open to Opportunities</div>
+    <p class="contact-sub">Looking for SWE, full-stack, AI developer, or graduate engineering roles across Mumbai, Pune, Bangalore — immediate joiner.</p>
+    <div class="contact-links">
+      <a href="mailto:sohilsheikh369@gmail.com" class="contact-link">📧 sohilsheikh369@gmail.com</a>
+      <a href="tel:+917021705135" class="contact-link">📞 +91-7021705135</a>
+      <a href="https://github.com/Sohil7021" target="_blank" class="contact-link">🐙 github.com/Sohil7021</a>
+      <a href="#" class="contact-link">💼 LinkedIn</a>
+    </div>
+  </div>
+</section>
+<footer><p>Built by Sohil Sheikh · sohilsheikh369@gmail.com · Mumbai, India</p></footer>
+</body>
+</html>
